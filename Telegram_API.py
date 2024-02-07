@@ -566,9 +566,10 @@ def process_tx():
         file=new_tx["file"],
     )
     if r.status_code == 201:
+        account_name = Pocketsmith_API.getNameByID(new_tx["account"], "account")
         bot.send_message(
             m_id,
-            f"Transacción cargada exitosamente:\n Cuenta: {new_tx['account']}\n Pagador: {new_tx['payee']}\n ¿Ingreso?: {new_tx['income']}\n Importe: {new_tx['amount']}\n Categoria: {new_tx['category']}\n Fecha: {new_tx['date']}\n Nota: {new_tx['note'][0]}\n",
+            f"Transacción cargada exitosamente:\n Cuenta: {account_name}\n Pagador: {new_tx['payee']}\n ¿Ingreso?: {new_tx['income']}\n Importe: {new_tx['amount']}\n Categoria: {new_tx['category']}\n Fecha: {new_tx['date']}\n Nota: {new_tx['note'][0]}\n",
         )
     else:
         bot.send_message(
@@ -588,9 +589,10 @@ def process_tx():
                 new_tx["account"],
             )
             if r.status_code == 201:
+                account_name = Pocketsmith_API.getNameByID(new_tx["account"], "account")
                 bot.send_message(
                     m_id,
-                    f"Transacción cargada exitosamente:\n Cuenta: {new_tx['account']}\n Pagador: {new_tx['payee']}\n ¿Ingreso?: {new_tx['income']}\n Importe: {new_tx['amount']}\n Categoria: {new_tx['category']}\n Fecha: {new_tx['date']}\n Nota: {new_tx['note'][i]}\n",
+                    f"Transacción cargada exitosamente:\n Cuenta: {account_name}\n Pagador: {new_tx['payee']}\n ¿Ingreso?: {new_tx['income']}\n Importe: {new_tx['amount']}\n Categoria: {new_tx['category']}\n Fecha: {new_tx['date']}\n Nota: {new_tx['note'][i]}\n",
                 )
             else:
                 bot.send_message(
