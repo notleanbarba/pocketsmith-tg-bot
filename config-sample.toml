@@ -1,0 +1,22 @@
+title = "Bot config file"
+
+[Telegram]
+telegram_bot_token = "yourTelegramAPIToken" # Token given by Bot Father
+authorized_users = [123, 1234]              # Chat_id for each authorized user
+
+[Pocketsmith]
+base_url = "https://api.pocketsmith.com/v2/"
+pocketsmith_token = "yourPocketSmithAPIToken" # Token created in Pocketsmith
+eth_balance = 0                               # Your current Ethereum balance
+user = 0                                      # Your Pocketsmith's user id
+
+[Bot]
+private_ip = "yourServerPrivateIP" # The private ip for the instance running the server
+port = 443
+domain = "yourDomain"              # Your own domain
+
+[ssl]
+email = "yourEmailAddress"               # Your domain to create an ssl certificate
+SSL_BASE_PATH = "/etc/letsencrypt/live/"
+WEBHOOK_SSL_CERT = "fullchain.pem"
+WEBHOOK_SSL_PRIV = "privkey.pem"
