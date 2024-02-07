@@ -1,8 +1,0 @@
-{
-  "payees": [],
-  "categories": [{ "name": "Category-name", "id": 0, "tx": false }],
-  "accounts": [{ "name": "Wallet", "id": 0, "thumbnail": "cash.png" }],
-  "labels": [],
-  "payment_methods": [],
-  "taxes": []
-}
