@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Start bot
+# Must be executed as root
+if [[ $UID != 0 ]]; then
+    echo "pocketsmith-tg-bot must be started as root"
+    echo "Please re-run this script as"
+    echo "  sudo ./start"
+    exit 1
+fi
+
+check_dependencies () {
+  for cmd in "$@"; do
+    if ! command -v $cmd > /dev/null 2>&1; then
+      echo "This script requires \"${cmd}\" to be installed"
+      exit 1
+    fi
+  done
+}
+
+check_python_modules () {
+    for cmd in "$@"; do
+        if ! python3.11 -c \"import ${cmd}\" > /dev/null 2>&1; then
+            echo "This script requires \"${cmd}\" to be installed"
+            exit 1
+        fi
+    done
+}
+
+# Check system's dependencies
+check_dependencies python3.11 pip3.11 certbot
+
+# Check python's modules
+check_python_modules requests json tomllib time telebot base64 datetime telegram_bot_calendar re flask gevent.pywsgi
+
+# Check for env variables
+echo "Checking environment variables existence"
+if [$DOMAIN == ""]; then
+    echo "No domain provide. Add it to your environment variables"
+if [$EMAIL == ""]; then
+    echo "No email provide. Add it to your environment variables"
+if [$POCKETSMITH_API_KEY == ""]; then
+    echo "Pocketsmith API key not provided. Add it to your environment variables"
+
+# Create env variables
+cd ..
+export BOT_PATH=$PWD
+cd ./scripts
+
+# Check SSL certificate existence
+if ! [ -f /etc/letsencrypt/live/$DOMAIN/fullchain.pem -a -f /etc/letsencrypt/live/$DOMAIN/privkey.pem ]; then
+  echo "SSL certificate not installed"
+  echo "Creating certificate"
+  certbot -d $DOMAIN -n --preferred-challenges http --agree-tos -m $EMAIL --key-path /etc/letsencrypt/live/$DOMAIN/ --fullchain-path /etc/letsencrypt/live/$DOMAIN/ || {
+    echo "SSL certificate installation failed."
+    exit 1
+  }    
+  echo "SSL certificate succesfully installed"
+fi
+
+# Pull data from Pocketsmith
+echo "Getting data from Pocketsmith"
+python3.11 createLists.py && echo "Pocketsmith database succesfully retrieved"
+
+# Creating systemd service for bot
+echo "Creating systemd service"
+cp $BOT_PATH/scripts/ps_tg_bot.service /etc/systemd/system/
+cd /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable ps_tg_bot.service
+
+# Starting Telegram bot
+sudo systemctl start ps_tg_bot.service && echo "Bot succesfully started. Now you can chat with him." || {
+  echo "There was an error when trying to start the bot"
+  exit 1
+}
