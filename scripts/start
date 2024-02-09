@@ -28,6 +28,9 @@ check_python_modules () {
     done
 }
 
+# Call install script
+./install
+
 # Check system's dependencies
 check_dependencies python3.11 pip3.11 certbot
 
@@ -67,11 +70,11 @@ python3.11 createLists.py && echo "Pocketsmith database succesfully retrieved"
 echo "Creating systemd service"
 cp $BOT_PATH/scripts/ps_tg_bot.service /etc/systemd/system/
 cd /etc/systemd/system/
-sudo systemctl daemon-reload
-sudo systemctl enable ps_tg_bot.service
+systemctl daemon-reload
+systemctl enable ps_tg_bot.service
 
 # Starting Telegram bot
-sudo systemctl start ps_tg_bot.service && echo "Bot succesfully started. Now you can chat with him." || {
+systemctl start ps_tg_bot.service && echo "Bot succesfully started. Now you can chat with him." || {
   echo "There was an error when trying to start the bot"
   exit 1
 }
