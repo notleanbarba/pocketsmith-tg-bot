@@ -32,7 +32,12 @@ check_python_modules () {
 check_dependencies python3.11 pip3.11 certbot
 
 # Check python's modules
-check_python_modules requests json tomllib time telebot base64 datetime telegram_bot_calendar re flask gevent.pywsgi
+check_python_modules requests json toml time telebot base64 datetime telegram_bot_calendar re flask gevent.pywsgi
+
+# Execute configure script
+export PRIVIP=`hostname -I | awk '{print $1}'`
+mv ../config-sample.toml ../config.toml
+python3.11 config.py
 
 # Check for env variables
 echo "Checking environment variables existence"
