@@ -41,11 +41,11 @@ python3 config.py
 
 # Check for env variables
 echo "Checking environment variables existence"
-if [$DOMAIN == ""]; then
+if [ $DOMAIN == "" ]; then
     echo "No domain provide. Add it to your environment variables"; fi
-if [$EMAIL == ""]; then
+if [ $EMAIL == "" ]; then
     echo "No email provide. Add it to your environment variables"; fi
-if [$POCKETSMITH_API_KEY == ""]; then
+if [ $POCKETSMITH_API_KEY == "" ]; then
     echo "Pocketsmith API key not provided. Add it to your environment variables"; fi
 
 # Create env variables
