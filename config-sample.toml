@@ -16,7 +16,6 @@ port = 443
 domain = "yourDomain"              # Your own domain FROM ENV   
 
 [ssl]
-email = "yourEmailAddress"               # Your domain to create an ssl certificate FROM ENV
 SSL_BASE_PATH = "/etc/letsencrypt/live/"
 WEBHOOK_SSL_CERT = "fullchain.pem"
 WEBHOOK_SSL_PRIV = "privkey.pem"
