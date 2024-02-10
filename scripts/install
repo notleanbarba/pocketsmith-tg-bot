@@ -27,11 +27,18 @@ fi
 # Download bot software
 cd ~
 mkdir pocketsmith-tg-bot
-curl -s https://api.github.com/repos/notleanbarba/pocketsmith-tg-bot/releases/latest | \
+repos=`curl -s https://api.github.com/repos/notleanbarba/pocketsmith-tg-bot/releases/latest`
+if [[ $repos =~ "\"message\": \"Not Found\"" ]]; then
+    echo "Falling back to default release"
+    wget -O - -q https://github.com/notleanbarba/pocketsmith-tg-bot/archive/refs/tags/v-1.0.0-alpha.tar.gz | \
+    tar -xz -C ~/pocketsmith-tg-bot/ --strip-components=1
+else
+    echo "Getting latest release"
+    curl -s https://api.github.com/repos/notleanbarba/pocketsmith-tg-bot/releases/latest | \
     grep "tarball_url" | \
     head -1 | \
     cut -d " " -f 4,4 | \
     tr -d \" | tr -d , | \
-    wget -O - -q -i - | \
-    tar -xz -C ~/pocketsmith-tg-bot/ --strip-components=1
-
+    wget -q -i - -O - | \
+    tar -xzf - -C ~/pocketsmith-tg-bot/ --strip-components=1
+fi

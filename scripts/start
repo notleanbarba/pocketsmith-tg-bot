@@ -29,6 +29,7 @@ check_python_modules () {
 }
 
 # Call install script
+chmod +x ./install
 ./install
 
 # Check system's dependencies
