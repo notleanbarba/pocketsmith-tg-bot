@@ -57,7 +57,7 @@ cd ./scripts
 if ! [ -f /etc/letsencrypt/live/$DOMAIN/fullchain.pem -a -f /etc/letsencrypt/live/$DOMAIN/privkey.pem ]; then
   echo "SSL certificate not installed"
   echo "Creating certificate"
-  certbot -d $DOMAIN -n --preferred-challenges http --agree-tos -m $EMAIL --key-path /etc/letsencrypt/live/$DOMAIN/ --fullchain-path /etc/letsencrypt/live/$DOMAIN/ || {
+  certbot certonly -d $DOMAIN -n --standalone --preferred-challenges http --agree-tos -m $EMAIL --key-path /etc/letsencrypt/live/$DOMAIN/ --fullchain-path /etc/letsencrypt/live/$DOMAIN/ || {
     echo "SSL certificate installation failed."
     exit 1
   }    
