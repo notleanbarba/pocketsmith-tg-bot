@@ -19,7 +19,7 @@ fi
 
 # Install python modules
 echo "Installing python modules"
-if ! pip3.11 install requests pyTelegramBotAPI python-telegram-bot-calendar flask gevent.pywsgi > /dev/null 2>&1; then
+if ! pip3.11 install requests pyTelegramBotAPI python-telegram-bot-calendar flask gevent.pywsgi toml > /dev/null 2>&1; then
     echo "An error has ocurred when installing python modules"
     exit 1
 fi

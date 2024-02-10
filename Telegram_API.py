@@ -9,10 +9,10 @@ import Pocketsmith_API
 import re
 import flask
 from gevent.pywsgi import WSGIServer
-import tomllib
+import toml
 
-with open("config.toml", "rb") as c:
-    user_config = tomllib.load(c)
+with open("config.toml", "r") as c:
+    user_config = toml.load(c)
 
 API_TOKEN = user_config["Telegram"]["telegram_bot_token"]
 bot = telebot.TeleBot(API_TOKEN, threaded=False)

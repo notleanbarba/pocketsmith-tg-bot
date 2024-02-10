@@ -1,10 +1,10 @@
 import requests
 import json
-import tomllib
+import toml
 
 
-with open("config.toml", "rb") as c:
-    user_config = tomllib.load(c)
+with open("config.toml", "r") as c:
+    user_config = toml.load(c)
 
 eth_balance = user_config["Pocketsmith"]["eth_balance"]
 user = user_config["Pocketsmith"]["user"]
