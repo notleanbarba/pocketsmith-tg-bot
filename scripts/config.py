@@ -4,7 +4,7 @@ import toml
 
 if __name__ == "__main__":
 
-    with open("config.toml", "r") as c:
+    with open("../config.toml", "r") as c:
         user_config = toml.load(c)
 
     print("Saving enviroment variables to config.toml")
@@ -14,5 +14,5 @@ if __name__ == "__main__":
     user_config["Bot"]["private_ip"] = os.getenv("PRIVIP")
     user_config["Bot"]["domain"] = os.getenv("DOMAIN")
 
-    with open("config.toml", "wb") as c:
+    with open("../config.toml", "w") as c:
         toml.dump(user_config, c)

@@ -21,7 +21,7 @@ check_dependencies () {
 
 check_python_modules () {
     for cmd in "$@"; do
-        if ! python3.11 -c \"import ${cmd}\" > /dev/null 2>&1; then
+        if ! python3 -c "import ${cmd}" > /dev/null 2>&1; then
             echo "This script requires \"${cmd}\" to be installed"
             exit 1
         fi
@@ -29,7 +29,7 @@ check_python_modules () {
 }
 
 # Check system's dependencies
-check_dependencies python3.11 pip3 certbot
+check_dependencies python3 pip3 certbot
 
 # Check python's modules
 check_python_modules requests json toml time telebot base64 datetime telegram_bot_calendar re flask gevent.pywsgi
@@ -37,7 +37,7 @@ check_python_modules requests json toml time telebot base64 datetime telegram_bo
 # Execute configure script
 export PRIVIP=`hostname -I | awk '{print $1}'`
 mv ../config-sample.toml ../config.toml
-python3.11 config.py
+python3 config.py
 
 # Check for env variables
 echo "Checking environment variables existence"
@@ -66,7 +66,7 @@ fi
 
 # Pull data from Pocketsmith
 echo "Getting data from Pocketsmith"
-python3.11 createLists.py && echo "Pocketsmith database succesfully retrieved"
+python3 createLists.py && echo "Pocketsmith database succesfully retrieved"
 
 # Creating systemd service for bot
 echo "Creating systemd service"

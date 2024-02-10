@@ -12,7 +12,7 @@ fi
 
 # Install system dependencies
 echo "Installing system dependencies"
-if ! yum install -y python3.11 pip certbot > /dev/null 2>&1; then 
+if ! yum install -y python3 pip certbot > /dev/null 2>&1; then 
     echo "An error has ocurred when installing system dependencies"
     exit 1
 fi
