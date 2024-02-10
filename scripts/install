@@ -12,14 +12,14 @@ fi
 
 # Install system dependencies
 echo "Installing system dependencies"
-if ! yum install -y python3.11 pip3 certbot > /dev/null 2>&1; then 
+if ! yum install -y python3.11 pip certbot > /dev/null 2>&1; then 
     echo "An error has ocurred when installing system dependencies"
     exit 1
 fi
 
 # Install python modules
 echo "Installing python modules"
-if ! pip3.11 install requests pyTelegramBotAPI python-telegram-bot-calendar flask gevent.pywsgi toml > /dev/null 2>&1; then
+if ! pip3 install requests pyTelegramBotAPI python-telegram-bot-calendar flask gevent toml > /dev/null 2>&1; then
     echo "An error has ocurred when installing python modules"
     exit 1
 fi
@@ -43,7 +43,7 @@ else
     tar -xzf - -C ~/pocketsmith-tg-bot/ --strip-components=1
 fi
 
-cd ~/pocketsmith-tg-bot/
+cd ~/pocketsmith-tg-bot/scripts/
 chmod +x ./start
 echo "Starting bot"
 ./start
