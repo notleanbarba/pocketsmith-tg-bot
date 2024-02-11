@@ -2,13 +2,10 @@
 Description=Execute pocketsmith-tg-bot as a Linux service
 After=multi-user.target
 
+[Install]
+WantedBy=multi-user.target
+
 [Service]
 Type=simple
 Restart=always
 User=root
-WorkingDirectory=$BOT_PATH
-ExecStart=/usr/bin/python3.11 $BOT_PATH/Telegram_API.py
-EnvironmentFile=~/.pocketsmith-tg-bot/scripts/.secrets.env
-
-[Install]
-WantedBy=multi-user.target

@@ -1,7 +1,7 @@
 # This script pulls all the existing data from the Pocketsmith DB and creates the lists.json file that is going to be used by the bot.
 import requests
 import json
-import tomllib
+import toml
 
 
 def get_payees() -> list:
@@ -74,8 +74,8 @@ def get_labels() -> list:
 
 
 if __name__ == "__main__":
-    with open("config.toml", "rb") as c:
-        user_config = tomllib.load(c)
+    with open("config.toml", "r") as c:
+        user_config = toml.load(c)
 
     headers = {
         "accept": "application/json",
