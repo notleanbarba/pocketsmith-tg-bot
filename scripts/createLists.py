@@ -74,7 +74,7 @@ def get_labels() -> list:
 
 
 if __name__ == "__main__":
-    with open("config.toml", "r") as c:
+    with open("../config.toml", "r") as c:
         user_config = toml.load(c)
 
     headers = {
@@ -107,5 +107,5 @@ if __name__ == "__main__":
     json_file["labels"] = get_labels()
 
     print("Saving lists to file")
-    with open("./lists.json", "w", encoding="utf-8") as lists:
+    with open("../lists.json", "w", encoding="utf-8") as lists:
         json.dump(json_file, lists, ensure_ascii=False)
