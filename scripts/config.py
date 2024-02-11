@@ -10,6 +10,7 @@ if __name__ == "__main__":
     print("Saving enviroment variables to config.toml")
 
     user_config["Pocketsmith"]["pocketsmith_token"] = os.getenv("POCKETSMITH_TOKEN")
+    user_config["Pocketsmith"]["user"] = os.getenv("PS_USER")
     user_config["Telegram"]["telegram_bot_token"] = os.getenv("TELEGRAM_TOKEN")
     user_config["Bot"]["private_ip"] = os.getenv("PRIVIP")
     user_config["Bot"]["domain"] = os.getenv("DOMAIN")
