@@ -53,6 +53,13 @@ cd ..
 export BOT_PATH=$PWD
 cd ./scripts
 
+# Export environment variables to .bashrc
+echo "BOT_PATH=${BOT_PATH}" >> ./.secrets.env
+echo "DOMAIN=${DOMAIN}" >> ./.secrets.env
+echo "EMAIL=${EMAIL}" >> ./.secrets.env
+echo "POCKETSMITH_TOKEN=${POCKETSMITH_TOKEN}" >> ./.secrets.env
+echo "TELEGRAM_TOKEN=${TELEGRAM_TOKEN}" >> ./.secrets.env
+
 # Check SSL certificate existence
 if ! [ -f /etc/letsencrypt/live/$DOMAIN/fullchain.pem -a -f /etc/letsencrypt/live/$DOMAIN/privkey.pem ]; then
   echo "SSL certificate not installed"
