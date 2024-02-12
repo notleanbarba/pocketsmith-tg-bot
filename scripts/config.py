@@ -12,7 +12,7 @@ if __name__ == "__main__":
     user_config["Pocketsmith"]["pocketsmith_token"] = os.getenv("POCKETSMITH_TOKEN")
     user_config["Pocketsmith"]["user"] = os.getenv("PS_USER")
     user_config["Telegram"]["telegram_bot_token"] = os.getenv("TELEGRAM_TOKEN")
-    user_config["Telegram"]["authorized_users"] = [os.getenv("TG_USER")]
+    user_config["Telegram"]["authorized_users"] = [int(os.getenv("TG_USER"))]
     user_config["Bot"]["private_ip"] = os.getenv("PRIVIP")
     user_config["Bot"]["domain"] = os.getenv("DOMAIN")
 

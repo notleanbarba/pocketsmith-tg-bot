@@ -20,12 +20,19 @@ check_dependencies () {
 }
 
 check_python_modules () {
-    for cmd in "$@"; do
-        if ! python3.11 -c "import ${cmd}" > /dev/null 2>&1; then
-            echo "This script requires \"${cmd}\" to be installed"
-            exit 1
-        fi
-    done
+  for cmd in "$@"; do
+    if ! python3.11 -c "import ${cmd}" > /dev/null 2>&1; then
+      echo "This script requires \"${cmd}\" to be installed"
+      exit 1
+    fi
+  done
+}
+
+check_env_variables () {
+  for cmd in "$@"; do
+    if [ ${cmd} == "" ]; then
+      echo "No ${cmd} variable provided. Add it to your environment with the following command:"
+      echo "Export ${cmd}=YOURDATA"
 }
 
 # Check system's dependencies
@@ -41,18 +48,7 @@ python3.11 config.py
 
 # Check for env variables
 echo "Checking environment variables existence"
-if [ $DOMAIN == "" ]; then
-    echo "No domain provide. Add it to your environment variables"
-    exit 1; fi
-if [ $EMAIL == "" ]; then
-    echo "No email provide. Add it to your environment variables"
-    exit 1; fi
-if [ $POCKETSMITH_TOKEN == "" ]; then
-    echo "Pocketsmith API key not provided. Add it to your environment variables"
-    exit 1; fi
-if [ $PS_USER == "" ]; then
-    echo "Pocketsmith API key not provided. Add it to your environment variables"
-    exit 1; fi
+check_env_variables $DOMAIN $EMAIL $POCKETSMITH_TOKEN $PS_USER $TG_USER
 
 # Create env variables
 cd ..
