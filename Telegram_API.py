@@ -24,11 +24,13 @@ WEBHOOK_LISTEN = user_config["Bot"]["private_ip"]
 WEBHOOK_SSL_CERT = (
     user_config["SSL"]["SSL_BASE_PATH"]
     + WEBHOOK_HOST
+    + "/"
     + user_config["SSL"]["WEBHOOK_SSL_CERT"]
 )
 WEBHOOK_SSL_PRIV = (
     user_config["SSL"]["SSL_BASE_PATH"]
     + WEBHOOK_HOST
+    + "/"
     + user_config["SSL"]["WEBHOOK_SSL_PRIV"]
 )
 
@@ -110,7 +112,7 @@ c_2, s_2 = WMonthTelegramCalendar(
 
 
 def checkUserPermits(message: Message):
-    allowed_users = user_config["Bot"]["authorized_users"]
+    allowed_users = user_config["Telegram"]["authorized_users"]
     if message.chat.id not in allowed_users:
         bot.send_message(chat_id=message.chat.id, text="Usuario no autorizado")
         raise Exception("Usuario no autorizado")
