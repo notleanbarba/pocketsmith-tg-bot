@@ -26,7 +26,7 @@ fi
 
 # Download bot software
 cd ~
-mkdir pocketsmith-tg-bot
+mkdir -p pocketsmith-tg-bot
 repos=`curl -s https://api.github.com/repos/notleanbarba/pocketsmith-tg-bot/releases/latest`
 if [[ $repos =~ "\"message\": \"Not Found\"" ]]; then
     echo "Falling back to default release"
