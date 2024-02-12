@@ -2,16 +2,16 @@ title = "Bot config file"
 
 [Telegram]
 telegram_bot_token = "yourTelegramAPIToken" # Token given by Bot Father FROM ENV
-authorized_users = [123, 1234]              # Chat_id for each authorized user
+authorized_users = [123, 1234]              # Chat_id for each authorized user FROM ENV
 
 [Pocketsmith]
 base_url = "https://api.pocketsmith.com/v2/"
 pocketsmith_token = "yourPocketSmithAPIToken" # Token created in Pocketsmith FROM ENV
 eth_balance = 0                               # Your current Ethereum balance
-user = 0                                      # Your Pocketsmith's user id
+user = 0                                      # Your Pocketsmith's user id FROM ENV
 
 [Bot]
-private_ip = "yourServerPrivateIP" # The private ip for the instance running the server
+private_ip = "yourServerPrivateIP" # The private ip for the instance running the server FROM ENV
 port = 443
 domain = "yourDomain"              # Your own domain FROM ENV   
 
