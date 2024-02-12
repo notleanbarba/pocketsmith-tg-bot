@@ -29,7 +29,7 @@ check_python_modules () {
 }
 
 # Check system's dependencies
-check_dependencies python3.11 certbot
+check_dependencies python3.11 pip3.11 certbot
 
 # Check python's modules
 check_python_modules requests json toml time telebot base64 datetime telegram_bot_calendar re flask gevent.pywsgi
