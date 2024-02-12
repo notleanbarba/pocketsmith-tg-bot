@@ -33,6 +33,8 @@ check_env_variables () {
     if [ ${cmd} == "" ]; then
       echo "No ${cmd} variable provided. Add it to your environment with the following command:"
       echo "Export ${cmd}=YOURDATA"
+    fi
+  done
 }
 
 # Check system's dependencies
