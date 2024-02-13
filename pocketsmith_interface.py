@@ -24,6 +24,10 @@ payees_list = lists["payees"]
 payment_method_list = lists["payment_methods"]
 tax_list = lists["taxes"]
 
+for p in accounts_list:
+    acc = []
+    acc.append(p["name"])
+
 
 def addPayee(newPayee):
     tmp = set(payees_list)

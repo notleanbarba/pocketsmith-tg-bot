@@ -1,6 +1,8 @@
 import os
 import toml
-
+import telebot
+import time
+from init import API_TOKEN, WEBHOOK_URL_BASE, WEBHOOK_URL_PATH
 
 if __name__ == "__main__":
 
@@ -18,3 +20,15 @@ if __name__ == "__main__":
 
     with open("../config.toml", "w") as c:
         toml.dump(user_config, c)
+
+    bot = telebot.TeleBot(API_TOKEN, threaded=False)
+
+    bot.remove_webhook()
+
+    time.sleep(0.1)
+
+    # Set webhook
+    bot.set_webhook(
+        url=WEBHOOK_URL_BASE + WEBHOOK_URL_PATH,
+        drop_pending_updates=True,
+    )
