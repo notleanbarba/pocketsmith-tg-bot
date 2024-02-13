@@ -50,12 +50,18 @@ python3.11 config.py
 
 # Check for env variables
 echo "Checking environment variables existence"
-check_env_variables $DOMAIN $EMAIL $POCKETSMITH_TOKEN $PS_USER $TG_USER
+check_env_variables $DOMAIN $EMAIL $POCKETSMITH_TOKEN $TG_USER
 
 # Create env variables
 cd ..
 export BOT_PATH=$PWD
 cd ./scripts
+export PS_USER=`curl -s --request GET \
+     --url https://api.pocketsmith.com/v2/me \
+     --header "X-Developer-Key: ${POCKETSMITH_TOKEN}" \
+     --header "accept: application/json" | \
+     jq -r ".id"`
+     
 
 # Check SSL certificate existence
 if ! [ -f /etc/letsencrypt/live/$DOMAIN/fullchain.pem -a -f /etc/letsencrypt/live/$DOMAIN/privkey.pem ]; then

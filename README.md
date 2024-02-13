@@ -101,14 +101,13 @@ Uff, that was long. Now, if everything went OK, you are ready to start your bot.
 sudo su
 ```
 
-3. Nice, you are logged as root. Fill up, copy and paste the following block. This will give the starting script all the information it needs to execute.
+3. Nice, you are logged as root. Fill up, copy and paste the following codeblock. This will give the starting script all the information it needs to execute.
 
 ```bash
 export DOMAIN=Enter.your.custom.subdomain.here (Like bot.google.com)
 export EMAIL=Enter your emai address
 export POCKETSMITH_TOKEN=Enter your Pocketsmith API key
 export TELEGRAM_TOKEN=Enter your Telegram API key
-export PS_USER=Enter your Pocketsmith user id
 export TG_USER=Enter your Telegram user id
 curl -L https://raw.githubusercontent.com/notleanbarba/pocketsmith-tg-bot/master/scripts/install | bash
 
