@@ -83,7 +83,7 @@ echo "Creating systemd service"
 cp $BOT_PATH/scripts/ps_tg_bot.service /etc/systemd/system/
 cd /etc/systemd/system/
 echo "WorkingDirectory=${BOT_PATH}" >> ./ps_tg_bot.service
-echo "ExecStart=/usr/bin/python3.11 ${BOT_PATH}/Telegram_API.py" >> ./ps_tg_bot.service
+echo "ExecStart=/usr/bin/python3.11 ${BOT_PATH}/app.py" >> ./ps_tg_bot.service
 systemctl daemon-reload
 systemctl enable ps_tg_bot.service
 

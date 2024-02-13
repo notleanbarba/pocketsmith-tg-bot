@@ -110,7 +110,6 @@ export POCKETSMITH_TOKEN=Enter your Pocketsmith API key
 export TELEGRAM_TOKEN=Enter your Telegram API key
 export TG_USER=Enter your Telegram user id
 curl -L https://raw.githubusercontent.com/notleanbarba/pocketsmith-tg-bot/master/scripts/install | bash
-
 ```
 
 You finished! If everything went good, you should have your Pocketsmith Telegram bot up and running.
