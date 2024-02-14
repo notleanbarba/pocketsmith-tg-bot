@@ -1,7 +1,7 @@
 import toml
 import telebot
 
-with open("config.toml", "r") as c:
+with open("../config.toml", "r") as c:
     user_config = toml.load(c)
 
     API_TOKEN = user_config["Telegram"]["telegram_bot_token"]
