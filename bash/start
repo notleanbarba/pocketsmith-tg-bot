@@ -58,9 +58,9 @@ echo "Checking environment variables existence"
 check_env_variables $DOMAIN $EMAIL $POCKETSMITH_TOKEN $TG_USER
 
 # Create env variables
-cd ..
+cd ../py/
 export BOT_PATH=$PWD
-cd ./bash
+cd .././bash
 
 # Check SSL certificate existence
 if ! [ -f /etc/letsencrypt/live/$DOMAIN/fullchain.pem -a -f /etc/letsencrypt/live/$DOMAIN/privkey.pem ]; then

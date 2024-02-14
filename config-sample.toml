@@ -13,7 +13,7 @@ user = 0                                      # Your Pocketsmith's user id FROM 
 [Bot]
 private_ip = "yourServerPrivateIP" # The private ip for the instance running the server FROM ENV
 port = 443
-domain = "yourDomain"              # Your own domain FROM ENV   
+domain = "yourDomain"              # Your own domain FROM ENV
 
 [SSL]
 SSL_BASE_PATH = "/etc/letsencrypt/live/"
