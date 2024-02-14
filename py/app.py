@@ -10,7 +10,7 @@ app = flask.Flask(__name__)
 # Empty webserver index, return nothing, just http 200
 @app.route(WEBHOOK_URL_PATH + "<thumbnail>", methods=["GET"])
 def index(thumbnail):
-    return flask.send_file(f"./account_thumbnails/{thumbnail}")
+    return flask.send_file(f"../account_thumbnails/{thumbnail}")
 
 
 # Process webhook calls
