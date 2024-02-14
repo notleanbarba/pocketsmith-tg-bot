@@ -1,5 +1,5 @@
 from init import WEBHOOK_URL_BASE, WEBHOOK_URL_PATH, bot, AUTHORIZED_USERS
-import py.pocketsmith_interface as pocketsmith_interface
+import pocketsmith_interface 
 from telegram_bot_calendar import WMonthTelegramCalendar, LSTEP
 from datetime import date, datetime
 from telebot.types import Message, InlineQueryResultArticle, InputTextMessageContent

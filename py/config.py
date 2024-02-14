@@ -10,7 +10,7 @@ if __name__ == "__main__":
     with open(f"{BOT_PATH}/config.toml", "r") as c:
         user_config = toml.load(c)
 
-    print("Saving enviroment variables to config.toml")
+    print("Saving environment variables to config.toml")
 
     user_config["Pocketsmith"]["pocketsmith_token"] = os.getenv("POCKETSMITH_TOKEN")
     user_config["Pocketsmith"]["user"] = os.getenv("PS_USER")
