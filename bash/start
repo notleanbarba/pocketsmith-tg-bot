@@ -51,7 +51,7 @@ export PS_USER=`curl -s --request GET \
      --header "accept: application/json" | \
      jq -r ".id"`
 mv ../config-sample.toml ../config.toml
-python3.11 ../py/init.py
+python3.11 ../py/config.py
 
 # Check for env variables
 echo "Checking environment variables existence"
