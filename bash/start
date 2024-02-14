@@ -46,7 +46,7 @@ check_python_modules requests json toml time telebot base64 datetime telegram_bo
 # Execute configure script
 export PRIVIP=`hostname -I | awk '{print $1}'`
 mv ../config-sample.toml ../config.toml
-python3.11 config.py
+python3.11 ../py/config.py
 
 # Check for env variables
 echo "Checking environment variables existence"
@@ -55,7 +55,7 @@ check_env_variables $DOMAIN $EMAIL $POCKETSMITH_TOKEN $TG_USER
 # Create env variables
 cd ..
 export BOT_PATH=$PWD
-cd ./scripts
+cd ./bash
 export PS_USER=`curl -s --request GET \
      --url https://api.pocketsmith.com/v2/me \
      --header "X-Developer-Key: ${POCKETSMITH_TOKEN}" \
@@ -76,14 +76,14 @@ fi
 
 # Pull data from Pocketsmith
 echo "Getting data from Pocketsmith"
-python3.11 createLists.py && echo "Pocketsmith database succesfully retrieved"
+python3.11 ../py/createLists.py && echo "Pocketsmith database succesfully retrieved"
 
 # Creating systemd service for bot
 echo "Creating systemd service"
-cp $BOT_PATH/scripts/ps_tg_bot.service /etc/systemd/system/
+cp $BOT_PATH/bash/ps_tg_bot.service /etc/systemd/system/
 cd /etc/systemd/system/
 echo "WorkingDirectory=${BOT_PATH}" >> ./ps_tg_bot.service
-echo "ExecStart=/usr/bin/python3.11 ${BOT_PATH}/app.py" >> ./ps_tg_bot.service
+echo "ExecStart=/usr/bin/python3.11 ${BOT_PATH}/py/app.py" >> ./ps_tg_bot.service
 systemctl daemon-reload
 systemctl enable ps_tg_bot.service
 

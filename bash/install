@@ -43,7 +43,7 @@ else
     tar -xzf - -C ~/pocketsmith-tg-bot/ --strip-components=1
 fi
 
-cd ~/pocketsmith-tg-bot/scripts/
+cd ~/pocketsmith-tg-bot/bash/
 chmod +x ./start
 echo "Starting bot"
 ./start
