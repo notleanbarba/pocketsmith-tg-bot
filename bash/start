@@ -45,6 +45,11 @@ check_python_modules requests json toml time telebot base64 datetime telegram_bo
 
 # Execute configure script
 export PRIVIP=`hostname -I | awk '{print $1}'`
+export PS_USER=`curl -s --request GET \
+     --url https://api.pocketsmith.com/v2/me \
+     --header "X-Developer-Key: ${POCKETSMITH_TOKEN}" \
+     --header "accept: application/json" | \
+     jq -r ".id"`
 mv ../config-sample.toml ../config.toml
 python3.11 ../py/config.py
 
@@ -56,12 +61,6 @@ check_env_variables $DOMAIN $EMAIL $POCKETSMITH_TOKEN $TG_USER
 cd ..
 export BOT_PATH=$PWD
 cd ./bash
-export PS_USER=`curl -s --request GET \
-     --url https://api.pocketsmith.com/v2/me \
-     --header "X-Developer-Key: ${POCKETSMITH_TOKEN}" \
-     --header "accept: application/json" | \
-     jq -r ".id"`
-     
 
 # Check SSL certificate existence
 if ! [ -f /etc/letsencrypt/live/$DOMAIN/fullchain.pem -a -f /etc/letsencrypt/live/$DOMAIN/privkey.pem ]; then
