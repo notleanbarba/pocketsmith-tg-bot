@@ -50,6 +50,11 @@ export PS_USER=`curl -s --request GET \
      --header "X-Developer-Key: ${POCKETSMITH_TOKEN}" \
      --header "accept: application/json" | \
      jq -r ".id"`
+
+cd ..
+export BOT_PATH=$PWD
+cd ./bash
+
 mv ../config-sample.toml ../config.toml
 python3.11 ../py/config.py
 
@@ -57,10 +62,6 @@ python3.11 ../py/config.py
 echo "Checking environment variables existence"
 check_env_variables $DOMAIN $EMAIL $POCKETSMITH_TOKEN $TG_USER
 
-# Create env variables
-cd ..
-export BOT_PATH=$PWD
-cd ./bash
 
 # Check SSL certificate existence
 if ! [ -f /etc/letsencrypt/live/$DOMAIN/fullchain.pem -a -f /etc/letsencrypt/live/$DOMAIN/privkey.pem ]; then
