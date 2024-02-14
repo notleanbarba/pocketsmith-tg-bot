@@ -22,7 +22,7 @@ if __name__ == "__main__":
     with open("../config.toml", "w") as c:
         toml.dump(user_config, c)
 
-    bot = telebot.TeleBot(API_TOKEN, threaded=False)
+    bot = telebot.TeleBot(user_config["Telegram"]["telegram_bot_token"], threaded=False)
 
     bot.remove_webhook()
 
