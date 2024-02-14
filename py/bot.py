@@ -1,4 +1,4 @@
-from init import WEBHOOK_URL_BASE, WEBHOOK_URL_PATH, bot, user_config
+from init import WEBHOOK_URL_BASE, WEBHOOK_URL_PATH, bot, AUTHORIZED_USERS
 import py.pocketsmith_interface as pocketsmith_interface
 from telegram_bot_calendar import WMonthTelegramCalendar, LSTEP
 from datetime import date, datetime
@@ -31,8 +31,7 @@ c_2, s_2 = WMonthTelegramCalendar(
 
 
 def checkUserPermits(message: Message):
-    allowed_users = user_config["Telegram"]["authorized_users"]
-    if message.chat.id not in allowed_users:
+    if message.chat.id not in AUTHORIZED_USERS:
         bot.send_message(chat_id=message.chat.id, text="Usuario no autorizado")
         raise Exception("Usuario no autorizado")
     return True
