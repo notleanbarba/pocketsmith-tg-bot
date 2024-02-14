@@ -17,6 +17,7 @@ if __name__ == "__main__":
     user_config["Telegram"]["authorized_users"] = [int(os.getenv("TG_USER"))]
     user_config["Bot"]["private_ip"] = os.getenv("PRIVIP")
     user_config["Bot"]["domain"] = os.getenv("DOMAIN")
+    user_config["Pocketsmith"]["user"] = os.getenv("PS_USER")
 
     with open("../config.toml", "w") as c:
         toml.dump(user_config, c)
