@@ -5,7 +5,9 @@ import time
 
 if __name__ == "__main__":
 
-    with open("../config.toml", "r") as c:
+    BOT_PATH = os.getenv("BOT_PATH")
+
+    with open(f"{BOT_PATH}/config.toml", "r") as c:
         user_config = toml.load(c)
 
     print("Saving enviroment variables to config.toml")
@@ -24,7 +26,7 @@ if __name__ == "__main__":
     )
     WEBHOOK_URL_PATH = "/%s/" % (user_config["Telegram"]["telegram_bot_token"])
 
-    with open("../config.toml", "w") as c:
+    with open(f"{BOT_PATH}/config.toml", "w") as c:
         toml.dump(user_config, c)
 
     bot = telebot.TeleBot(user_config["Telegram"]["telegram_bot_token"], threaded=False)

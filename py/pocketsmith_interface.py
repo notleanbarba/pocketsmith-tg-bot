@@ -3,7 +3,7 @@ import json
 import toml
 
 
-with open("../config.toml", "r") as c:
+with open("./config.toml", "r") as c:
     user_config = toml.load(c)
 
 eth_balance = user_config["Pocketsmith"]["eth_balance"]
@@ -16,7 +16,7 @@ headers = {
 }
 Pocketsmith_BASE_URL = user_config["Pocketsmith"]["base_url"]
 
-lists = json.load(open("../lists.json", "r", encoding="utf-8"))
+lists = json.load(open("./lists.json", "r", encoding="utf-8"))
 accounts_list = lists["accounts"]
 categories_list = lists["categories"]
 labels_list = lists["labels"]
@@ -33,7 +33,7 @@ def addPayee(newPayee):
     tmp = set(payees_list)
     tmp.add(newPayee)
     lists["payees"] = list(tmp)
-    with open("../lists.json", "w", encoding="utf-8") as JSONList:
+    with open("./lists.json", "w", encoding="utf-8") as JSONList:
         json.dump(lists, JSONList, ensure_ascii=False)
 
 
@@ -45,7 +45,7 @@ def deletePayee(oldPayee):
     if oldPayee in tmp:
         tmp.remove(oldPayee)
     lists["payees"] = list(tmp)
-    with open("../lists.json", "w", encoding="utf-8") as JSONList:
+    with open("./lists.json", "w", encoding="utf-8") as JSONList:
         json.dump(lists, JSONList, ensure_ascii=False)
 
 
@@ -53,7 +53,7 @@ def addLabel(newLabel):
     tmp = set(labels_list)
     tmp.add(newLabel)
     lists["labels"] = list(tmp)
-    with open("../lists.json", "w", encoding="utf-8") as JSONList:
+    with open("./lists.json", "w", encoding="utf-8") as JSONList:
         json.dump(lists, JSONList, ensure_ascii=False)
 
 
