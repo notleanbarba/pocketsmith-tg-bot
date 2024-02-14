@@ -786,7 +786,7 @@ def query_account(inline_query):
     try:
         options = []
         i = 1
-        for p in pocketsmith_interface.accounts_list:
+        for p in pocketsmith_interface.acc:
             p_name = p["name"]
             m = re.search(search.lower(), f"{p_name.lower()}")
             if not isinstance(m, re.Match):
