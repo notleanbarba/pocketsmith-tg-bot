@@ -2,7 +2,7 @@ import os
 import toml
 import telebot
 import time
-from init import API_TOKEN, WEBHOOK_URL_BASE, WEBHOOK_URL_PATH
+from init import WEBHOOK_URL_BASE, WEBHOOK_URL_PATH
 
 if __name__ == "__main__":
 
